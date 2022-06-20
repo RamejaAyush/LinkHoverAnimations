@@ -10,6 +10,8 @@
   gap: 25px;
 
   a {
+    position: relative;
+    z-index: 1;
     font-family: "Fascinate", cursive;
     font-size: 45px;
     display: flex;
@@ -17,15 +19,13 @@
     justify-content: center;
     overflow: hidden;
     padding: 15px 25px;
-    // height: 1em;
     text-decoration: none;
     color: black;
-    // background-color: rgb(214, 214, 214);
     border-radius: 5px;
 
     span {
       position: relative;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.75s cubic-bezier(0.17, 0.67, 0.77, 0.24);
 
       &::before {
         font-family: "Playfair Display", serif;
@@ -36,7 +36,28 @@
         transform: translate3d(0, 0, 0);
       }
     }
+
+    &::after {
+      position: absolute;
+      content: "";
+      z-index: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: black;
+      transition: all 0.75s cubic-bezier(0.17, 0.67, 0.77, 0.24);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+
     &:hover {
+      transition-delay: 2s;
+
       span {
         transform: translateY(-110%);
       }

@@ -9,6 +9,8 @@
   gap: 25px;
 }
 .links a {
+  position: relative;
+  z-index: 1;
   font-family: "Fascinate", cursive;
   font-size: 45px;
   display: flex;
@@ -22,7 +24,7 @@
 }
 .links a span {
   position: relative;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.75s cubic-bezier(0.17, 0.67, 0.77, 0.24);
 }
 .links a span::before {
   font-family: "Playfair Display", serif;
@@ -31,6 +33,25 @@
   top: 110%;
   content: attr(data-hover);
   transform: translate3d(0, 0, 0);
+}
+.links a::after {
+  position: absolute;
+  content: "";
+  z-index: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: black;
+  transition: all 0.75s cubic-bezier(0.17, 0.67, 0.77, 0.24);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.links a:hover::after {
+  transform: scaleX(1);
+}
+.links a:hover {
+  transition-delay: 2s;
 }
 .links a:hover span {
   transform: translateY(-110%);
